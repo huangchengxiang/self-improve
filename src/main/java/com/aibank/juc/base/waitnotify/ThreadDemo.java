@@ -19,7 +19,7 @@ public class ThreadDemo extends  Thread {
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args){
         ThreadDemo t1 = new ThreadDemo("t1");
         synchronized(t1) {
             try {
@@ -38,4 +38,5 @@ public class ThreadDemo extends  Thread {
             }
         }
     }
+
 }
