@@ -1,0 +1,46 @@
+package com.aibank.juc.comunication;
+
+import java.util.Arrays;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+
+public enum Helper {
+
+    instance;
+
+    private static final ExecutorService tPool = Executors.newFixedThreadPool(2);
+
+    public static String[] buildNumberArray(int max) {
+        String[] noArr = new String[max];
+        for (int i = 0; i < max; i++) {
+            noArr[i] = Integer.toString(i + 1);
+        }
+        return noArr;
+    }
+
+    public static String[] buildCharArray(int max) {
+        String[] charArr = new String[max];
+        int tmp = 65;
+        for (int i = 0; i < max; i++) {
+            charArr[i] = String.valueOf((char) (tmp + i));
+        }
+        return charArr;
+    }
+
+    public static void print(String... input) {
+        if (input == null) {
+            return;
+        }
+        Arrays.stream(input).forEach(each -> System.out.print(each));
+    }
+
+    public void run(Runnable r) {
+        tPool.submit(r);
+    }
+
+    public void shutdown() {
+        tPool.shutdown();
+    }
+
+}
